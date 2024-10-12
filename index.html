@@ -1,0 +1,176 @@
+@@ -0,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <title>For Niswa</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            background-color: #ffe6e6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #ff6699;
+            margin-top: 30px;
+        }
+        h2, p.poem {
+            color: #ff6699;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center; 
+            gap: 50px; 
+            margin-top: 50px;
+        }
+        #btnOui, #btnNo {
+            background-color: lightgreen;
+            height: 70px;
+            width: 100px;
+        }
+        #btnNo {
+            background-color: #ec5252;
+            height: 70px; 
+            padding: 0 20px; 
+        }
+        .cuore {
+            width: 30px;
+            height: 30px;
+            background-image: url('https://media.tenor.com/BIyhzxwbFSoAAAAi/pink-cuore-pink.gif'); 
+            background-size: cover;
+            position: absolute;
+            opacity: 0; 
+            transform: scale(0.5); 
+        }
+        #message {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $("#btnOui").click(cambiaImm);
+            $("#btnNo").click(cambiaImm2);
+        });
+
+        function cambiaImm() {
+            $("#milkbear").attr("src", "https://media.tenor.com/sFStC1YwBzMAAAAi/milk-and-mocha-hug.gif");
+            for (let i = 0; i < 5; i++) {
+                var cuore = $('<div class="cuore"></div>');
+                $('body').append(cuore);
+
+                var x = Math.random() * $(window).width();
+                var y = Math.random() * $(window).height();
+
+                cuore.css({
+                    left: x,
+                    top: y,
+                    opacity: 1, 
+                    width: '30px', 
+                    height: '30px', 
+                    position: 'absolute', 
+                });
+
+                setTimeout(function() {
+                    cuore.remove();
+                }, 2000); 
+            }
+
+            for (let i = 0; i < 20; i++) {
+                var cuore = $('<div class="cuore"></div>');
+                var x = $("#btnOui").offset().left + ($("#btnOui").width() / 2);
+                var y = $("#btnOui").offset().top + ($("#btnOui").height() / 2);
+                cuore.css({
+                    left: x,
+                    top: y,
+                    opacity: 1, 
+                });
+                $('body').append(cuore);
+                animatecuore(cuore);
+            }
+
+            $("#milkbear").after("<h2>Terima kasih Niswa! Maaf jika dadakan, tapi aku serius sama kamu!</h2>");
+        }
+        
+        function cambiaImm2() {
+            var altezza = parseInt($("#btnOui").css("height")) + 10;
+            var larghezza = parseInt($("#btnOui").css("width")) + 10;
+            $("#btnOui").css({"height": altezza + "px", "width": larghezza + "px"});
+            cambiaTestoEFont();
+        }
+
+        function animatecuore(cuore) {
+            var xEnd = Math.random() * $(window).width();
+            var yEnd = Math.random() * $(window).height();
+            var size = Math.random() * 1.5 + 0.5; 
+            cuore.animate({
+                left: xEnd,
+                top: yEnd,
+                opacity: 0,
+                transform: 'scale(' + size + ')'
+            }, 2000, function() {
+                $(this).remove(); 
+            });
+        }
+
+        function cambiaTestoEFont() {
+            var btnNo = $("#btnNo");
+            var testi = ["No :(", "serius wa? :(", "coba pikir lagi :(", "Banyak manfaatnya lho! :(", "Please ;)", "Masih menolak? :(", "I'm waiting :("];
+            var testoCorrente = btnNo.text();
+            var indiceTesto = testi.indexOf(testoCorrente);
+            var prossimoTesto = testi[(indiceTesto + 1) % testi.length];
+            btnNo.text(prossimoTesto);
+
+            var lunghezzaTesto = prossimoTesto.length;
+            if (lunghezzaTesto < 10) {
+                btnNo.css('font-size', '16px');
+            } else if (lunghezzaTesto < 20) {
+                btnNo.css('font-size', '14px');
+            } else if (lunghezzaTesto < 30) {
+                btnNo.css('font-size', '12px');
+            } else {
+                btnNo.css('font-size', '10px');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>halo niswa</h1>
+    <p>Play dulu videonya ya, sambil baca pesanku di bawah :)</p>
+    
+    <!-- Embed Video YouTube -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/-CQ4yr9o0qM?autoplay=1&loop=1&playlist=-CQ4yr9o0qM" 
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <!-- Pesan dan Puisi -->
+    <div id="message">
+        <h2>Niswa bacanya pelan pelan ya</h2>
+        <p>Maaf jika dadakan kaya gini, tapi aku serius. Dari dulu mungkin kamu ga sadar.</p>
+        
+        <!-- Beberapa puisi yang tidak terlalu alay -->
+        <p class="poem">Aku ga ada niat untuk buru buru, aku tau kita juga ada ragu untuk mulai.</p>
+        <p class="poem">aku mau kita, dan aku mau mengusahakan. tapi aku perlu bantuan dari kamu.</p>
+        <p class="poem">jadi kamu mau ngga buat ngasi aku kesempatan isi ruang kosong di hatimu?</p>
+    </div>
+
+    <img src="https://media1.tenor.com/m/kS2IYOV7-wEAAAAC/milk-and-mocha.gif" alt="milkbear" height="150px" id="milkbear" style="margin-top: 20px;">
+    <div class="button-container">
+        <div id="si">
+            <button id="btnOui" class="btn btn-success">Yes <3</button>
+        </div>
+        <div id="no">
+            <button id="btnNo" class="btn btn-danger ">No :(</button>
+        </div>
+    </div>
+</body>
+</html>
